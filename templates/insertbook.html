@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8"> 
+   <title> 新書新增  </title>
+   <script type="text/javascript"></script>
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+   <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="col-lg-12 "style="border-bottom-style:solid;" >
+        <div class="col-lg-5 col-md-offset-5">
+		<font size=50px>新書新增</font>
+        </div>
+</div>
+
+
+<div class="col-lg-12" style="height:150px;"></div>
+
+
+<div class="col-lg-8 col-md-offset-2">
+<form action="/bookinsert" method="post">
+	<font size="6">書本編號:</font><input name="id"style="font-size:23px">
+	<font size="6">書本名稱:</font><input name="name"style="font-size:23px">
+<select name="type" style="width:120px;height:40px;font-size:20px;text-align:center;">
+	<option value="中文書">中文書</option>
+        <option value="英文書">英文書</option>
+        <option value="日文書">日文書</option>
+        <option value="漫畫書">漫畫書</option>	
+</select>
+<input type="submit" value="新增書本" style="width:120px;height:40px;font-size:20px;">
+</form>
+</div>
+
+
+
+</body>
+</html>
+

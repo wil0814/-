@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8"> 
+   <title> {{name[0]}}讀者  </title>
+   <script type="text/javascript"></script>
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+   <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="col-lg-12 "style="border-bottom-style:solid;" >
+        <div class="col-lg-5 col-md-offset-5">
+	<font size=50px>讀者{{name[0]}}查尋</font>
+        </div>
+</div>
+
+
+<div class="col-lg-12" style="height:150px;"></div>
+
+
+
+
+
+
+
+<div class=" col-lg-8 col-md-offset-2">
+
+	<table border='0' width="10%" class="table table-hover">
+   <tr>
+    <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書本編號</font></td>
+    <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書名</font></td>
+    <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書本類型</font></td>
+    <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書本歸還日期</font></td>
+   </tr>
+
+
+   {%for i in content%}
+   <tr>
+    <td align='center' valign="middle"><font size="5">{{i[0]}}</font></td>
+    <td align='center' valign="middle"><font size="5">{{i[1]}}</font></td>
+    <td align='center' valign="middle"><font size="5">{{i[2]}}</font></td>
+    <td align='center' valign="middle"><font size="5">{{i[3]}}</font></td>
+
+    
+   </tr>
+   {%endfor%}
+   
+</table>
+</div>
+
+
+
+
+
+
+</body>
+</html>
+
