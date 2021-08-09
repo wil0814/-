@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+<table id="ajax" border='0' width="80%" class="table table-hover">
+
+   <tr>
+    <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書本編號</font></td>
+    <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書名</font></td>
+    <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書本狀態</font></td>
+    <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書本類型</font></td>
+    <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書本租借</font></td>
+   </tr>
+
+   {%for i in content%}
+   <tr>
+    <td align='center' valign="middle"><font size="5">{{i[0]}}</font></td>
+    <td align='center' valign="middle"><font size="5">{{i[1]}}</font></td>
+    <td align='center' valign="middle"><font size="5">{{i[2]}}</font></td>
+    <td align='center' valign="middle"><font size="5">{{i[3]}}</font></td>
+    <td align='center' valign="middle"><input type="checkbox" class="{{i[2]}}" name="check" value="{{i[0]}}" style="width:20px;height:20px;">
+   </tr>
+   {%endfor%}
+
+   <input type="hidden" name="who" value="{{who}}">
+</table>
+
+</body>
+</html>

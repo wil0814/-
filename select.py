@@ -166,54 +166,47 @@ def ub(userid):
 
     return render_template('userborrower.html',content=content,name=name)
 
-
-@app.route('/chose', methods=['GET','POST'])
-def chose():
-    a=request.values['chose']
-    if a=="":
-        print('a')
+@app.route('/ajax',methods=['GET','POST'])
+def ajax():
+    data = request.get_json('data')
+    print (data['chose'])
+    if data['chose']=="":
         conn = pymysql.connect(
-                host='localhost',
-                user='root',
-                password='',
-                db='books',
-                charset='utf8'
-                )
+            host='localhost',
+            user='root',
+            password='',
+            db='books',
+            charset='utf8'
+            )
         cur=conn.cursor()
         sql="select * from books;"
         cur.execute(sql)
         content=cur.fetchall()
-        sql= "select id from borrower order by id desc;"
-        cur.execute(sql)
-        userid=cur.fetchone()
         sql= "select name from borrower order by id desc;"
         cur.execute(sql)
         b=cur.fetchone()
         cur.close()
         who=b[0]
-        return render_template('userselect.html',who=who,content=content,userid=userid)
+        return render_template('ajax.html',content=content,who=who)
+
     else:
-        print('b')
         conn = pymysql.connect(
-                host='localhost',
-                user='root',
-                password='',
-                db='books',
-                charset='utf8'
-                )   
+            host='localhost',
+            user='root',
+            password='',
+            db='books',
+            charset='utf8'
+            )
         cur=conn.cursor()
-        sql="select * from books where types='"+a+"';"
+        sql="select * from books where types='"+data['chose']+"';"
         cur.execute(sql)
         content=cur.fetchall()
-        sql= "select id from borrower order by id desc;"
-        cur.execute(sql)
-        userid=cur.fetchone()
         sql= "select name from borrower order by id desc;"
         cur.execute(sql)
         b=cur.fetchone()
         cur.close()
         who=b[0]
-        return render_template('userselect.html',who=who,content=content,userid=userid)
+        return render_template('ajax.html',content=content,who=who)
     
 
 @app.route('/book', methods=['GET','POST'])

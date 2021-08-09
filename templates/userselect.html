@@ -23,7 +23,7 @@
 
 
 <div class="col-lg-8 col-md-offset-2">
-<form action="/chose" method="POST" >
+
 
 <select name="chose" style="width:120px;height:40px;font-size:20px;text-align:center;">
     <option value=""></option>
@@ -31,12 +31,15 @@
     <option value="英文書">英文書</option>
     <option value="漫畫書">漫畫書</option>
 </select>
-<input type="submit" value="選擇篩選" style="width:120px;height:40px;font-size:20px;">
-</form>
+<font size="5">選擇篩選</font>
 
 
-<table border='0' width="80%" class="table table-hover">
+
 <form action="/check" method="POST" >
+
+
+<table id="ajax" border='0' width="80%" class="table table-hover">
+
    <tr>
     <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書本編號</font></td>
     <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書名</font></td>
@@ -44,7 +47,7 @@
     <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書本類型</font></td>
     <td align='center' valign="middle"><font size="6" style="font-weight:bold;">書本租借</font></td>
    </tr>
-
+	   
    {%for i in content%}
    <tr>	
     <td align='center' valign="middle"><font size="5">{{i[0]}}</font></td>	
@@ -54,16 +57,23 @@
     <td align='center' valign="middle"><input type="checkbox" class="{{i[2]}}" name="check" value="{{i[0]}}" style="width:20px;height:20px;">
    </tr>	
    {%endfor%}
-   <input type="hidden" name="who" value="{{who}}">
-   <td align='center' valign="middle"><input type="submit" value="租借書本" class="btn btn-warning" style="width:120px;height:40px;font-size:20px;"></td>
 
+   <input type="hidden" name="who" value="{{who}}">
+</table>
+ 
+<div class="row">
+<div class="col-md-2">
+<input type="submit" value="租借書本" class="btn btn-warning" style="width:120px;height:40px;font-size:20px;">
+</div>
 </form>
 
 <form action="/userborrower/{{userid[0]}}" method="POST" >
-<td align='center' valign="middle"><input type="submit" value="查尋書本" class="btn btn-info" style="width:120px;height:40px;font-size:20px;"></td>
+	<div class="col-md-5">	
+<input type="submit" value="查尋書本" class="btn btn-info" style="width:120px;height:40px;font-size:20px;">
+	</div>
 </form>
+</div>
 
-</table>
 </div>
 
 
@@ -84,24 +94,50 @@ for(var i = 0;i<ban.length;i++){
 });
 
 
+$(function(){
 
-function chose(){
-      　var a = document.getElementById("chose").value;
-	alert(a);
+
+$('select').on('change', function() {
+	
+	var a = this.value;
 	var test = new Object();
-	test.chose=[];
-	test.chose=a;
-	var data = JSON.stringify(test)
+        test.chose=[];
+        test.chose=a;
+        var data = JSON.stringify(test)
+	$.ajax({
+	  url:"/ajax",
+	  type:"POST",
+	  data:data,
+	  success:function(a){
+	    $("#ajax").html(a);
+	    var ban = document.getElementsByClassName("借出");
+	    for(var i = 0;i<ban.length;i++){
+		ban[i].disabled=true;
+		}   
+	  }
+	
+	
+	
+	
+	
+	
+	
+	});
 
-$.ajax({
-	url:"/chose",
-	type:"POST",
-	data:data
-	})
+
+
+});
+
+
+});
 
 
 
-}
+
+
+
+
+
 
 
 
